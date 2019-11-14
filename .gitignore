@@ -3,3 +3,21 @@
 ################################################################################
 
 /.vs
+/mod-api/MOD.DATA/bin/Debug/netcoreapp2.1
+/mod-api/MOD.DATA/obj
+/mod-api/MOD.GATEWAY/bin/Debug/netcoreapp2.1
+/mod-api/MOD.GATEWAY/obj
+/mod-api/MOD.PAYMENT/bin/Debug/netcoreapp2.1
+/mod-api/MOD.PAYMENT/obj/Debug/netcoreapp2.1
+/mod-api/MOD.PAYMENT/obj
+/mod-api/MOD.SEARCH/bin/Debug/netcoreapp2.1
+/mod-api/MOD.SEARCH/obj
+/mod-api/MOD.SECURITY/bin/Debug/netcoreapp2.1
+/mod-api/MOD.SECURITY/obj
+/mod-api/MOD.TECHNOLOGY/bin/Debug/netcoreapp2.1
+/mod-api/MOD.TECHNOLOGY/obj
+/mod-api/MOD.TRAINING/bin/Debug/netcoreapp2.1
+/mod-api/MOD.TRAINING/obj
+/mod-api/MOD.USER/bin/Debug/netcoreapp2.1
+/mod-api/MOD.USER/obj
+/mod-api/.vs/mod.api/v15
