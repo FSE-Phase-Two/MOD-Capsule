@@ -1,0 +1,18 @@
+Labs :
+url : https://labs.iiht.tech 
+password: pass@word1
+
+http://cognizantiiht.captivateprime.com/
+https://github.com/santuparsi/mod
+
+Giithub details
+
+url : https://github.com/FSE-Phase-Two/MOD-Capsule.git
+username:FSE-Phase-Two
+email:sumitnandi006@gmail.com
+password:Fse123@#
+
+
+
+
+
