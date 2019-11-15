@@ -12,6 +12,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MOD.DATA;
+using MOD.DATA.Repository;
+using MOD.DATA.Repository.Interface;
+using MOD.DATA.Repository.Model;
+
 namespace MOD.TRAINING
 {
     public class Startup
@@ -29,10 +33,12 @@ namespace MOD.TRAINING
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<MODContext>(options =>
             {
-                string DbConnectionString = "Data Source=DOTNET;Initial Catalog=FSE_MOD;Integrated Security=True";
-                options.UseSqlServer(DbConnectionString,
+                options.UseSqlServer(Configuration["DbConnectionString"],
                 assembly => assembly.MigrationsAssembly(typeof(MODContext).Assembly.FullName));
             });
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ITrainingRepository, TrainingRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
