@@ -10,6 +10,7 @@ Giithub details
 url : https://github.com/FSE-Phase-Two/MOD-Capsule.git
 username:FSE-Phase-Two
 email:sumitnandi006@gmail.com
+password:Fse123@#
 
 https://www.c-sharpcorner.com/article/jwt-json-web-token-authentication-in-asp-net-core/
 thevarungupta5@gmail.com
