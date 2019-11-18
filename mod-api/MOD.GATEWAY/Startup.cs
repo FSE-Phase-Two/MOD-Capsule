@@ -30,7 +30,7 @@ namespace MOD.GATEWAY
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+           /* services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -46,6 +46,37 @@ namespace MOD.GATEWAY
                 });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddOcelot(Configuration);
+            */
+            #region
+            var audienceConfig = Configuration.GetSection("Jwt");
+
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(audienceConfig["Key"]));
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = signingKey,
+                ValidateIssuer = true,
+                ValidIssuer = audienceConfig["Issuer"],
+                ValidateAudience = true,
+                ValidAudience = audienceConfig["Issuer"],
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero,
+                RequireExpirationTime = true,
+            };
+
+            services.AddAuthentication(o =>
+            {
+                o.DefaultAuthenticateScheme = "TestKey";
+            })
+            .AddJwtBearer("TestKey", x =>
+             {
+                 x.RequireHttpsMetadata = false;
+                 x.TokenValidationParameters = tokenValidationParameters;
+             });
+
+            services.AddOcelot(Configuration);
+            #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +93,7 @@ namespace MOD.GATEWAY
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseAuthentication();
             await app.UseOcelot();
         }
     }

@@ -14,7 +14,7 @@ namespace MOD.USER.Controllers
     {
         // GET: api/User
         [HttpGet]
-        [Authorize]
+       // [Authorize]
         public IEnumerable<string> Get()
         {
             return new string[] { "user1", "user2", "user3" };
