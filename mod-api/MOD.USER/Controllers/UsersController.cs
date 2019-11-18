@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +14,10 @@ namespace MOD.USER.Controllers
     {
         // GET: api/User
         [HttpGet]
+        [Authorize]
         public IEnumerable<string> Get()
         {
-            return new string[] { "user1", "user2" };
+            return new string[] { "user1", "user2", "user3" };
         }
 
         // GET: api/User/5
