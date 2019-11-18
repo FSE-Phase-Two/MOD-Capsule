@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -15,6 +16,9 @@ using MOD.DATA;
 using MOD.DATA.Repository;
 using MOD.DATA.Repository.Interface;
 using MOD.DATA.Repository.Model;
+using MOD.LOG;
+using MOD.TRAINING.BC;
+using NLog;
 
 namespace MOD.TRAINING
 {
@@ -22,6 +26,7 @@ namespace MOD.TRAINING
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(System.String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -38,7 +43,9 @@ namespace MOD.TRAINING
             });
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ITrainingRepository, TrainingRepository>();
+            services.AddScoped<ITrainingBC, TrainingBC>();
+            services.AddSingleton<ILog, LogNLog>();
+            //services.AddScoped<ITrainingRepository, TrainingRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

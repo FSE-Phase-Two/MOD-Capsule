@@ -23,3 +23,5 @@
 /mod-api/.vs/mod.api/v15
 /mod-api/.vs/mod.api/DesignTimeBuild
 /mod-api/.vs/config
+/mod-api/MOD.LOG/bin/Debug/netcoreapp2.1
+/mod-api/MOD.LOG/obj

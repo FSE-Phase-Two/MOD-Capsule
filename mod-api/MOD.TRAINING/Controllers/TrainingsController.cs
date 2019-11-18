@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MOD.DATA;
 using MOD.DATA.Model;
+using MOD.LOG;
+using MOD.TRAINING.BC;
 
 namespace MOD.TRAINING.Controllers
 {
@@ -13,36 +15,20 @@ namespace MOD.TRAINING.Controllers
     [ApiController]
     public class TrainingsController : ControllerBase
     {
-        IUnitOfWork UnitOfWork;
-        public TrainingsController(IUnitOfWork _UnitOfWork)
+        ITrainingBC TrainingBc;
+        ILog logger;
+        public TrainingsController(ITrainingBC _TrainingBc, ILog _logger)
         {
-            UnitOfWork = _UnitOfWork;
+            TrainingBc = _TrainingBc;
+            logger = _logger;
         }
 
         // GET: api/Trainings
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            IEnumerable<Training> trainings = UnitOfWork.Training.GetAllTraining();
-            Training newTraing = new Training
-            {
-                Rating = 9,
-                AmountReceived = 1200,
-                Progress = 25,
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now,
-                MentorId = 1,
-                TechnologyId = 1,
-                UserId = 1,
-                StartTime = DateTime.Now.TimeOfDay,
-                EndTime = DateTime.Now.TimeOfDay,
-                Status="Complete"
-            };
-
-
-            UnitOfWork.Training.CreateTraining(newTraing);
-            UnitOfWork.Complete();
-            UnitOfWork.Dispose();
+            logger.Information("call all training..");
+            IEnumerable<Training> trainings = TrainingBc.GetAllTraining();
             return new string[] { "Training1", "Training2" };
         }
 
@@ -55,13 +41,14 @@ namespace MOD.TRAINING.Controllers
 
         // POST: api/Trainings
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Training training)
         {
+            TrainingBc.CreateTraining(training);
         }
 
         // PUT: api/Trainings/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Training training)
         {
         }
 

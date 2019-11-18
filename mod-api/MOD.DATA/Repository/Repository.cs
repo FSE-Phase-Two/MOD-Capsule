@@ -89,10 +89,7 @@ namespace MOD.DATA.Repository
 
         public void Detach(TEntity Entity)
         {
-            //  _Context.Entry(Entity).de
-
-            _Context.Entry(Entity).State = EntityState.Detached;
-
+           _Context.Entry(Entity).State = EntityState.Detached;
         }
     }
 }
