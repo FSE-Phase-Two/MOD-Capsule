@@ -1,0 +1,32 @@
+Payment
+All Payment List
+Mentor payment - by mentor id 
+user payment info by user id
+Mentor withdraw
+
+Mentor
+Menotr Creation
+Menotr details - search by trainer id
+All mentor list
+Mentor acceptance
+Mentor search - search by course
+
+
+User
+User creation 
+user deatils - search user by user id
+update user profile
+All User list
+
+
+
+Training
+Menotr traing details - current traing and completed training
+User traing details - both completed and current
+Training request
+update training
+
+
+Technology
+All technology list
+Remove/update technology 
