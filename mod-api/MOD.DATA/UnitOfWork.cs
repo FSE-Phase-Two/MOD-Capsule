@@ -14,12 +14,37 @@ namespace MOD.DATA
 
         private Lazy<ITrainingRepository> _Training;
 
+        private Lazy<IUserRepository> _User;
+        private Lazy<IMentorRepository> _Mentor;
+        private Lazy<ITechnologyRepository> _Technology;
+        private Lazy<IPaymentRepository> _Payment;
+
         public UnitOfWork(MODContext Context)
         {
             _Context = Context;
             _Training = new Lazy<ITrainingRepository>(() =>
             {
                 return new TrainingRepository(_Context);
+            });
+
+            _User = new Lazy<IUserRepository>(() =>
+            {
+                return new UserRepository(_Context);
+            });
+
+            _Mentor = new Lazy<IMentorRepository>(() =>
+            {
+                return new MentorRepository(_Context);
+            });
+
+            _Technology = new Lazy<ITechnologyRepository>(() =>
+            {
+                return new TechnologyRepository(_Context);
+            });
+
+            _Payment = new Lazy<IPaymentRepository>(() =>
+            {
+                return new PaymentRepository(_Context);
             });
 
         }
@@ -54,6 +79,38 @@ namespace MOD.DATA
             get
             {
                 return _Training.Value;
+            }
+        }
+
+        public IUserRepository User
+        {
+            get
+            {
+                return _User.Value;
+            }
+        }
+
+        public IMentorRepository Mentor
+        {
+            get
+            {
+                return _Mentor.Value;
+            }
+        }
+
+        public ITechnologyRepository Technology
+        {
+            get
+            {
+                return _Technology.Value;
+            }
+        }
+
+        public IPaymentRepository Payment
+        {
+            get
+            {
+                return _Payment.Value;
             }
         }
 
