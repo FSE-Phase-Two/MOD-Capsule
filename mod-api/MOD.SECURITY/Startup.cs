@@ -43,7 +43,7 @@ namespace MOD.SECURITY
             }
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
+          //  app.UseAuthentication();
             app.UseMvc();
         }
     }
