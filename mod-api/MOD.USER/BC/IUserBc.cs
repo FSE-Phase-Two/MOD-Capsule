@@ -1,11 +1,12 @@
 ﻿using MOD.DATA.Model;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace MOD.DATA.Repository.Interface
+namespace MOD.USER.BC
 {
-    public interface IUserRepository
+    public interface IUserBc
     {
         User GetUserById(int userId);
     }

@@ -14,4 +14,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MOD.DATA\MOD.DATA.csproj" />
+    <ProjectReference Include="..\MOD.LOG\MOD.LOG.csproj" />
+    <ProjectReference Include="..\MOD.TRAINING\MOD.TRAINING.csproj" />
+  </ItemGroup>
+
 </Project>

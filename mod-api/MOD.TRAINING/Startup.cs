@@ -36,6 +36,7 @@ namespace MOD.TRAINING
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddDbContext<MODContext>(options =>
             {
                 options.UseSqlServer(Configuration["DbConnectionString"],
