@@ -35,13 +35,27 @@ namespace MOD.USER.Controllers
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
-            if (id != 0)
+            try
             {
-                User user = UserBc.GetUserById(id);
-                return Ok(user);
-                // return Ok(new { userId = user.UserId, emailId = user.EmailId });
+                logger.Information("User get operation by id..");
+                if (id != 0)
+                {
+                    User user = UserBc.GetUserById(id);
+                    if (user != null)
+                    {
+                        return Ok(user);
+                    }
+                    return NotFound();
+
+                }
+                return BadRequest();
             }
-            return NotFound();
+            catch (Exception ex)
+            {
+                logger.Error(ex.StackTrace);
+                return StatusCode(500, "Internal server error");
+            }
+
         }
 
         // POST: api/User

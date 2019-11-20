@@ -41,9 +41,21 @@ namespace MOD.TRAINING.Controllers
 
         // POST: api/Trainings
         [HttpPost]
-        public void Post([FromBody] Training training)
+        public IActionResult Post([FromBody] Training training)
         {
-            TrainingBc.CreateTraining(training);
+            try
+            {
+                logger.Information("started execute create training operation..");
+                TrainingBc.CreateTraining(training);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                logger.Error(ex.StackTrace);
+                return StatusCode(500, "Internal server error");
+            }
+
         }
 
         // PUT: api/Trainings/5

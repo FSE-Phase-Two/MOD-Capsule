@@ -20,7 +20,7 @@ namespace MOD.TRAINING.BC
         }
         public void CreateTraining(Training training)
         {
-            logger.Information("training BC....");
+            logger.Information("Execute create training BC....");
             UnitOfWork.Training.CreateTraining(training);
             UnitOfWork.Complete();
             UnitOfWork.Dispose();

@@ -20,6 +20,7 @@ namespace MOD.USER.BC
 
         public User GetUserById(int userId)
         {
+            logger.Information("Execute Get user by id..");
             return UnitOfWork.User.GetUserById(userId);
         }
     }
